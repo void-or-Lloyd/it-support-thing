@@ -11,10 +11,10 @@ export default function ComboboxBox(props: any) {
   return (
     <>
         <Combobox  items={props.value}>
-            <Label htmlFor="user-combobox" className="text-lg">Name of affected</Label>
-            <ComboboxInput id="user-combobox" placeholder="Who are you?" required />
+            <Label htmlFor="combobox-input" className="text-lg">{props.title}</Label>
+            <ComboboxInput id="combobox-input" placeholder={props.placeholder} required />
             <ComboboxContent>
-                <ComboboxEmpty>No one found</ComboboxEmpty>
+                <ComboboxEmpty>???</ComboboxEmpty>
                 <ComboboxList>
                     {(item) => (
                         <ComboboxItem key={item.id} value={item.id}>{item.name + " - id: " + item.id}</ComboboxItem>
