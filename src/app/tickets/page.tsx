@@ -22,6 +22,30 @@ export default async function Tickets() {
     }
   })
 
+
+  async function newTicket(formData: FormData) {
+    "use server"
+    
+
+    const title = formData.get("ticket-title")
+    const content = formData.get("ticket-content")
+    const user = formData.get("ticket-user")
+    const category = formData.get("ticket-category")
+
+    console.log(title)
+    console.log(content)
+    console.log(user)
+    console.log(category)
+
+    if (!title) return 
+    if (!content) return
+    if (!user) return
+    if (!category) return
+
+
+  }
+
+
   console.log(allUsers)
 
 
@@ -56,55 +80,69 @@ export default async function Tickets() {
 
         <CardFooter className="justify-between">
           <Label>Didn't find your issue?</Label>
-
-          <Dialog>
-            <form>
+         
+            <Dialog>
               <DialogTrigger render ={<Button variant="outline">Issue a new ticket!</Button>} />
 
               <DialogContent className="md:max-w-md">
+                <form action={newTicket} className="w-full">
                 <DialogHeader>
                   <DialogTitle className="text-lg">Create a support ticket!</DialogTitle>
                   <DialogDescription>Fill in the required (all of them) info below and create a new ticket!</DialogDescription>
                 </DialogHeader>
-                <FieldGroup>
-                  <FieldSet>
-                    <Field>
-                    <Label htmlFor="ticket-title" className="text-lg">Ticket title</Label>
-                      <Input 
-                        id="ticket-title" 
-                        placeholder="e.g. Why is my pc not turning on?" 
-                        // className="p-1 border-0 outline-1 outline-accent rounded-sm focus:outline-2" 
-                        required
-                      />
-                    </Field>
-                    
-                    <Field>
-                      <Label htmlFor="ticket-content" className="text-lg">The problem you're having</Label>
-                      <Input 
-                        id="ticket-content" 
-                        placeholder="What happened?" 
-                        // className="p-1 bg-accent border-0 outline-1 outline-ring rounded-sm focus:outline-2" 
-                        required
-                      />
-                    </Field>
-                  </FieldSet>
-                  <FieldSet>
-                    <Field>
-                      <ComboboxBox value={allUsers} title="User" placeholder="Select a user" />
-                    </Field>
-                    <Field>
-                      <ComboboxBox value={allCategories} title="Category" placeholder="Select a category" />
-                    </Field>
-                  </FieldSet>
+                  <FieldGroup>
+                    <FieldSet>
+                      <Field>
+                      <Label htmlFor="ticket-title" className="text-lg">Ticket title</Label>
+                        <Input 
+                          id="ticket-title" 
+                          name="ticket-title"
+                          placeholder="e.g. Why is my pc not turning on?" 
+                          // className="p-1 border-0 outline-1 outline-accent rounded-sm focus:outline-2" 
+                          required
+                        />
+                      </Field>
+                      
+                      <Field>
+                        <Label htmlFor="ticket-content" className="text-lg">The problem you're having</Label>
+                        <Input 
+                          id="ticket-content"
+                          name="ticket-content" 
+                          placeholder="What happened?" 
+                          // className="p-1 bg-accent border-0 outline-1 outline-ring rounded-sm focus:outline-2" 
+                          required
+                        />
+                      </Field>
+                    </FieldSet>
+                    <FieldSet>
+                      <Field>
+                        <ComboboxBox 
+                          id="which-user" 
+                          name="ticket-user"
+                          value={allUsers} 
+                          title="User" 
+                          placeholder="Select a user" 
+                        />
+                      </Field>
+                      <Field>
+                        <ComboboxBox 
+                          id="which-category" 
+                          name="ticket-category"
+                          value={allCategories} 
+                          title="Category" 
+                          placeholder="Select a category" 
+                        />
+                      </Field>
+                    </FieldSet>
 
-                </FieldGroup>
-                <Separator />
-                <Button id="submit-button" type="submit">Create new ticket</Button>
+                  </FieldGroup>
+                  <Separator />
+                  <Button id="submit-button" type="submit">Create new ticket</Button>
 
+                </form>
               </DialogContent>
               
-            </form>
-          </Dialog>
+            </Dialog>
           
         </CardFooter>
       </Card>

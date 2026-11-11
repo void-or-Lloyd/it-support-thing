@@ -5,14 +5,14 @@ import { Label } from "@/components/ui/label"
 
 export default function ComboboxBox(props: any) {
 
-    console.log(props.value)
+    // console.log(props.value)
 
 
   return (
     <>
         <Combobox  items={props.value}>
             <Label htmlFor="combobox-input" className="text-lg">{props.title}</Label>
-            <ComboboxInput id="combobox-input" placeholder={props.placeholder} required />
+            <ComboboxInput id="combobox-input" name={props.name} placeholder={props.placeholder} required />
             <ComboboxContent>
                 <ComboboxEmpty>???</ComboboxEmpty>
                 <ComboboxList>
