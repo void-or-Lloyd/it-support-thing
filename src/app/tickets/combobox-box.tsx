@@ -12,7 +12,7 @@ export default function ComboboxBox(props: any) {
     <>
         <Combobox  items={props.value}>
             <Label htmlFor="combobox-input" className="text-lg">{props.title}</Label>
-            <ComboboxInput id="combobox-input" name={props.name} placeholder={props.placeholder} required />
+            <ComboboxInput id="combobox-input" name={props.name} placeholder={props.placeholder}  />
             <ComboboxContent>
                 <ComboboxEmpty>???</ComboboxEmpty>
                 <ComboboxList>
